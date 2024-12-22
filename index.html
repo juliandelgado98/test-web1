@@ -3,35 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Ejemplo</title>
+    <title>Tienda Online - Estilo Mercado Libre</title>
     <style>
+        /* Estilos generales */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+            background-color: #eee;
             margin: 0;
             padding: 0;
         }
-        
+
         header {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #ffe600;
+            color: #333;
             text-align: center;
-            padding: 20px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
             margin: 0;
+            font-size: 24px;
         }
 
         .container {
             padding: 20px;
         }
 
-        p {
-            font-size: 18px;
+        h2 {
+            text-align: center;
             color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
         }
 
+        /* Estilos para el carrusel */
+        .carousel {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .carousel-item img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .carousel-item h3 {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0 5px;
+        }
+
+        .carousel-item p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .prev, .next {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Estilo del pie de página */
         footer {
             background-color: #333;
             color: white;
@@ -40,21 +110,68 @@
             position: fixed;
             width: 100%;
             bottom: 0;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Bienvenido a mi Página</h1>
+        <h1>Tienda Online - Encuentra lo que necesitas</h1>
     </header>
-    
+
     <div class="container">
-        <p>Este es un ejemplo básico de una página HTML con estilos CSS internos.</p>
-        <p>Puedes personalizar los colores, las fuentes y otros estilos según tus necesidades.</p>
+        <h2>Explora Nuestros Productos</h2>
+
+        <!-- Carrusel de productos -->
+        <div class="carousel">
+            <div class="carousel-images">
+                <div class="carousel-item">
+                    <img src="https://th.bing.com/th?id=OIP.eGTJ0KzfUR-ieQrYRDy0YQHaEW&w=326&h=191&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2" alt="Producto 1">
+                    <h3>Producto 1</h3>
+                    <p>$99.99</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://th.bing.com/th?id=OIP.h2pUoIZiooj74U987d_v0wHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>$149.99</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/400x300?text=Producto+3" alt="Producto 3">
+                    <h3>Producto 3</h3>
+                    <p>$199.99</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/400x300?text=Producto+4" alt="Producto 4">
+                    <h3>Producto 4</h3>
+                    <p>$249.99</p>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 Mi Página Web</p>
+        <p>&copy; 2024 Mi Tienda Online</p>
     </footer>
+
+    <script>
+        let currentIndex = 0;
+
+        function moveSlide(step) {
+            const slides = document.querySelectorAll('.carousel-item');
+            const totalSlides = slides.length;
+            currentIndex = (currentIndex + step + totalSlides) % totalSlides;
+            const carouselImages = document.querySelector('.carousel-images');
+            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // Mover el carrusel automáticamente cada 4 segundos
+        setInterval(() => {
+            moveSlide(1);
+        }, 4000);
+    </script>
 </body>
 </html>
